@@ -21,6 +21,9 @@
 
 - **New wallpaper switcher script**
 - **New script launcher script**
+- **New Menu**
+- **Modified Apps**
+
 
 # 📖 Information
 
