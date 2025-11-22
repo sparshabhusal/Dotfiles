@@ -23,6 +23,7 @@
 - **New script launcher script**
 - **New Menu**
 - **Modified Apps**
+- **New Waybar and Scripts**
 
 
 # 📖 Information
