@@ -53,10 +53,6 @@
 
 <br>
 
-## ❗Note
-
-- **When you use the wallpaper switcher to switch the wallpaper, the rofi color will not change because rofi is not using pywal colors yet ! Rofi is in being developed to use pywal colors.**
-
 # 📦 Installation
 
 > [!IMPORTANT]
