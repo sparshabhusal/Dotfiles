@@ -10,7 +10,7 @@
 }
 {
     "label" : "logout",
-    "action" : "loginctl terminate-user $USER",
+    "action" : "bash -c 'hyprctl dispatch exit 2>/dev/null || pkill Hyprland; sleep 0.3; sudo systemctl restart $(basename \\\"$(readlink -f /etc/systemd/system/display-manager.service)\\\")'",
     "text" : "Logout"
 }
 {

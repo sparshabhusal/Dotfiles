@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =====================================================
-#      Sparsha's Hyprland Dotfiles Installer (v1.1.0)
+#      Sparsha's Hyprland Dotfiles Installer (v1.1.2)
 # =====================================================
 
 # -------- COLORS --------
@@ -25,9 +25,20 @@ abort() {
 }
 
 # =====================================================
-# 0. CHECK IF SYSTEM IS ARCH-BASED
+# 0. STARTUP LOADING MESSAGES
 # =====================================================
 clear
+echo -e "${CYAN}[SCRIPT]${RESET} Loading environment ..."
+sleep 0.3
+echo -e "${CYAN}[SCRIPT]${RESET} Loading script ..."
+sleep 0.3
+echo -e "${CYAN}[SCRIPT]${RESET} Loading commands ..."
+sleep 0.5
+echo ""
+
+# =====================================================
+# 1. CHECK IF SYSTEM IS ARCH-BASED
+# =====================================================
 line
 note "Checking if your system is Arch-based..."
 sleep 0.5
@@ -53,40 +64,44 @@ line
 echo -e "${GREEN}            Sparsha's${RESET}"
 echo -e "${GREEN}                HYPRLAND DOTS${RESET}"
 line
-echo -e "   ・ Version 1.1.0              ・   2025"
+echo -e " ・ Version 1.2 | ・   2025  "
 line
 sleep 1
 echo ""
 
 # =====================================================
-# 1. ASK QUESTIONS (COLLECT USER CHOICES)
+# 2. ASK YAY FIRST (ONE-SHOT)
 # =====================================================
-line
-note "Setup prompts — answer the following:"
-sleep 1
-echo ""
+read -rp "$(echo -e ${GREEN}'[ INSTALL ] Do you want to install yay? (If you decline, the script quits) [y/n]: '${RESET})" INSTALL_YAY
+if [[ $INSTALL_YAY != [Yy]* ]]; then
+    echo -e "${RED}Yay installation declined. Exiting installer.${RESET}"
+    exit 1
+fi
 
+# =====================================================
+# 3. ASK OTHER QUESTIONS
+# =====================================================
 read -rp "$(echo -e ${GREEN}'[ INSTALL ] Do you want to install Timeshift & create a snapshot? [y/n]: '${RESET})" INSTALL_TIMESHIFT
-read -rp "$(echo -e ${GREEN}'[ INSTALL ] Install Yay (AUR helper) if missing? [y/n]: '${RESET})" INSTALL_YAY
-read -rp "$(echo -e ${GREEN}'[ INSTALL ] Install Google Chrome, Discord, and Spotify? [y/n]: '${RESET})" INSTALL_APPS
+read -rp "$(echo -e ${GREEN}'[ INSTALL ] Install Firefox , Google Chrome, Discord, and Spotify? [y/n]: '${RESET})" INSTALL_APPS
 read -rp "$(echo -e ${GREEN}'[ INSTALL ] Install SDDM and Silent Theme? [y/n]: '${RESET})" INSTALL_SDDM
 read -rp "$(echo -e ${GREEN}'[ INSTALL ] Install Fastfetch? [y/n]: '${RESET})" INSTALL_FASTFETCH
 read -rp "$(echo -e ${GREEN}'[ INSTALL ] Install Zsh, Oh-My-Zsh, and Powerlevel10k? [y/n]: '${RESET})" INSTALL_ZSH
+read -rp "$(echo -e ${GREEN}'[ INSTALL ] Install Neovim and apply config? [y/n]: '${RESET})" INSTALL_NVIM
 read -rp "$(echo -e ${GREEN}'[ INSTALL ] Install Sparsha’s Hyprland Dotfiles? [y/n]: '${RESET})" INSTALL_DOTFILES
-echo ""
 
 # =====================================================
-# 2. SUMMARY & CONFIRMATION
+# 4. SUMMARY & CONFIRMATION
 # =====================================================
 line
 note "SUMMARY OF CHOICES"
 line
-[[ $INSTALL_TIMESHIFT == [Yy]* ]] && echo -e "  • Timeshift ................ ${GREEN}Yes${RESET}" || echo -e "  • Timeshift ................ ${RED}No${RESET}"
-[[ $INSTALL_YAY == [Yy]* ]] && echo -e "  • Yay ....................... ${GREEN}Yes${RESET}" || echo -e "  • Yay ....................... ${RED}No${RESET}"
-[[ $INSTALL_APPS == [Yy]* ]] && echo -e "  • Chrome / Discord / Spotify ${GREEN}Yes${RESET}" || echo -e "  • Apps ...................... ${RED}No${RESET}"
+[[ $INSTALL_TIMESHIFT == [Yy]* ]] && echo -e "  • Timeshift ................. ${GREEN}Yes${RESET}" || echo -e "  • Timeshift ................ ${RED}No${RESET}"
+echo -e "  • Yay ...................... ${GREEN}Yes${RESET}"  # Yay is always Yes here
+[[ $INSTALL_APPS == [Yy]* ]] && echo -e "  • Firefox / Chrome / Discord / Spotify ${GREEN}Yes${RESET}" || echo -e "  • Apps ...................... ${RED}No${RESET}"
 [[ $INSTALL_SDDM == [Yy]* ]] && echo -e "  • SDDM + Theme .............. ${GREEN}Yes${RESET}" || echo -e "  • SDDM + Theme .............. ${RED}No${RESET}"
 [[ $INSTALL_FASTFETCH == [Yy]* ]] && echo -e "  • Fastfetch ................. ${GREEN}Yes${RESET}" || echo -e "  • Fastfetch ................. ${RED}No${RESET}"
 [[ $INSTALL_ZSH == [Yy]* ]] && echo -e "  • Zsh + Powerlevel10k ....... ${GREEN}Yes${RESET}" || echo -e "  • Zsh + Powerlevel10k ....... ${RED}No${RESET}"
+[[ $INSTALL_NVIM == [Yy]* ]] && echo -e "  • Neovim .................... ${GREEN}Yes${RESET}" || echo -e "  • Neovim .................... ${RED}No${RESET}"
 [[ $INSTALL_DOTFILES == [Yy]* ]] && echo -e "  • Hyprland Dotfiles ......... ${GREEN}Yes${RESET}" || echo -e "  • Hyprland Dotfiles ......... ${RED}No${RESET}"
 line
 echo ""
@@ -96,47 +111,37 @@ echo ""
 sleep 0.5
 
 # =====================================================
-# 3. ONE-SHOT INSTALLATION PHASE
+# 5. INSTALLATION PHASE
 # =====================================================
-
 clear
 line
 echo -e "${GREEN}            Sparsha's${RESET}"
 echo -e "${GREEN}                HYPRLAND DOTS${RESET}"
 line
-echo -e "   ・ Version 1.1.0              ・   2025"
+echo -e "   ・ Version 1.1.2              ・   2025"
 line
 sleep 1
 echo ""
+
+# --- Yay ---
+line
+note "Installing Yay AUR Helper..."
+./install-scripts/yay.sh || abort
 
 # --- Timeshift ---
 if [[ $INSTALL_TIMESHIFT == [Yy]* ]]; then
     line
     note "Installing Timeshift..."
     sudo pacman -S --noconfirm timeshift || abort
-    sudo timeshift --create --comments "Pre-Hyprland Install Snapshot"
+    sudo timeshift --create --comments "Setup Before Sparsha's Pre-configured Hyprland Dots"
     info "Timeshift installed and snapshot created!"
-fi
-
-# --- Yay ---
-if [[ $INSTALL_YAY == [Yy]* ]]; then
-    line
-    note "Checking Yay..."
-    if ! command -v yay &>/dev/null; then
-        sudo pacman -S --needed --noconfirm git base-devel
-        git clone https://aur.archlinux.org/yay.git
-        cd yay && makepkg -si --noconfirm && cd .. && rm -rf yay
-        info "Yay installed successfully!"
-    else
-        info "Yay found!"
-    fi
 fi
 
 # --- Apps ---
 if [[ $INSTALL_APPS == [Yy]* ]]; then
     line
     note "Installing Google Chrome, Discord, Spotify..."
-    yay -S --noconfirm google-chrome spotify || info "AUR apps may have failed."
+    yay -S --noconfirm firefox google-chrome spotify || info "AUR apps may have failed."
     sudo pacman -S --noconfirm discord noto-fonts noto-fonts-emoji || info "Discord installation failed."
     info "Applications installed successfully!"
 fi
@@ -167,31 +172,36 @@ if [[ $INSTALL_ZSH == [Yy]* ]]; then
     sudo pacman -S --noconfirm zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    sudo cp -r src/.oh-my-zsh ~
+    sudo cp -r src/.p10krc ~
+    sudo cp -r src/.zshrc ~
     info "Zsh + Oh-My-Zsh + Powerlevel10k installed!"
+fi
+
+# --- Neovim ---
+if [[ $INSTALL_NVIM == [Yy]* ]]; then
+    line
+    note "Installing Neovim and applying config..."
+    sudo pacman -S --noconfirm neovim || abort
+    mkdir -p ~/.config/nvim
+    cp -r src/.config/nvim/* ~/.config/nvim/
+    info "Neovim installed and config applied!"
 fi
 
 # --- Hyprland Dotfiles ---
 if [[ $INSTALL_DOTFILES == [Yy]* ]]; then
     line
     note "Installing Sparsha’s Hyprland Dotfiles..."
-    sudo pacman -S --noconfirm hyprland kitty
-    yay -S --noconfirm nwg-look rofi waybar pywal swww thunar pavucontrol tty-clock cava cmatrix btop htop hyprlock hypridle wlogout
-    yay -S --noconfirm ttf-jetbrainsmono-nerd otf-geist-mono-nerd ttf-nerd-fonts-symbols
-
-    mkdir -p ~/.icons ~/.themes ~/.config ~/Pictures
-    cd src/GTK/Graphite-gtk-theme && ./install.sh -d ~/.themes/ -t -c dark -s standard -l --tweaks darker rimless normal
-    cd src/GTK/WhiteSur-icon-theme && ./install.sh
-    cp -r src/GTK/GTK/Bibata-Modern-Ice ~/.icons
-    cp -r src/.config/rofi ~/.config/
-    cp -r src/.config/kitty ~/.config/
-    cp -r src/.config/hypr ~/.config/
-    cp -r src/.config/wlogout ~/.config
-    cp -r ../../Wallpapers ~/Pictures/
+    ./install-scripts/base.sh
+    ./install-scripts/packages.sh
+    ./install-scripts/gtk.sh
+    ./install-scripts/wallpapers.sh
+    ./install-scripts/configs.sh
     info "Hyprland Dotfiles installed successfully!"
 fi
 
 # =====================================================
-# 4. FINAL STATUS & REBOOT PROMPT
+# 6. FINAL STATUS & REBOOT PROMPT
 # =====================================================
 line
 read -rp "$(echo -e ${GREEN}'[ INSTALL ] Installation completed. Do you want to reboot now? [y/n]: '${RESET})" ans
@@ -208,3 +218,4 @@ else
     echo -e "${RED}-----------------------------------------${RESET}"
     exit 0
 fi
+

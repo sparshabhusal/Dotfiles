@@ -1,7 +1,9 @@
+// --- 🚀 https://github.com/sparshabhusal ✨ --- //
+
 {
     "layer": "top", 
     "position": "top",
-    "margin-top": 10,
+    "margin-top": 6,
     "spacing": 16,
     "modules-left": [
 	"custom/launcher",    
@@ -13,16 +15,14 @@
     "modules-right": [
         "tray",
         "pulseaudio",
-	"battery",
+	"custom/lock",
         "custom/power"
     ],
     "hyprland/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
       "format-icons": {
-        "urgent": "󰀨 ",
-        "active": "󰮯 ",
-        "default": ""
+        "urgent": "󰀨 "
        },
        "sort-by-number": true,
        "persistent-workspaces": {
@@ -36,8 +36,10 @@
     },
     "clock": {
         "timezone": "Asia/Kathmandu",
-        "format": "  {:%a, %d. %b | 󰥔  %I:%M %p}",   
-	"on-click": "kitty -e tty-clock -c -t"
+        "format": "    {:%I:%M %p}",
+        "on-click": "kitty -e tty-clock -c -t",
+	"tooltip": true,
+	"tooltip-format": "   Time"
     },
     "pulseaudio": {
         "format": "{icon}   {volume}%",
@@ -57,18 +59,23 @@
         },
         "on-click": "pavucontrol"
     },
-  "battery": {
-    "format": "{icon}  {capacity}%",
-    "format-charging": "󰂄  {capacity}%",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-  },
-  "custom/launcher": {
-        "format" : "  Menu",
+   "battery": {
+     "format": "{icon}  {capacity}%",
+     "format-charging": "󰂄  {capacity}%",
+     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+   },
+   "custom/launcher": {
+        "format" : "󰀻  Apps",
         "on-click" : "rofi -show drun"
     },
+    "custom/lock": {
+	    "format": "   Lock",
+	    "on-click": "hyprlock"
+    },
     "custom/power": {
-        "format": "   Logout   ",
-	"on-click" : "wlogout &"
-		}
+	    "format": "   Power",
+	    "on-click": "wlogout &"
     }
+  }
 }
+

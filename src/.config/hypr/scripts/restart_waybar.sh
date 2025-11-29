@@ -1,3 +1,4 @@
+# --- 🚀 https://github.com/sparshabhusal ✨ --- # 
 #!/bin/zsh
 
 echo "

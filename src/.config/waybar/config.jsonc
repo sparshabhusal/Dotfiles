@@ -1,19 +1,22 @@
+// --- 🚀 https://github.com/sparshabhusal ✨ --- //
+
 {
     "layer": "top", 
     "position": "top",
-    "margin-top": 10,
+    "margin-top": 6,
     "spacing": 16,
     "modules-left": [
 	"custom/launcher",    
         "hyprland/workspaces"
     ],
     "modules-center": [
-        "clock"
+        "clock",
     ],
     "modules-right": [
         "tray",
         "pulseaudio",
-        "custom/power"
+	"custom/lock",
+	"custom/power"
     ],
     "hyprland/workspaces": {
       "format": "{icon}",
@@ -33,8 +36,10 @@
     },
     "clock": {
         "timezone": "Asia/Kathmandu",
-        "format": "  {:%a, %d. %b | 󰥔  %I:%M %p}",   
-	"on-click": "kitty -e tty-clock -c -t"
+        "format": "    {:%I:%M %p}",
+        "on-click": "kitty -e tty-clock -c -t",
+	"tooltip": true,
+	"tooltip-format": "   Time"
     },
     "pulseaudio": {
         "format": "{icon}   {volume}%",
@@ -55,12 +60,16 @@
         "on-click": "pavucontrol"
     },
    "custom/launcher": {
-        "format" : "  Menu",
-        "on-click" : "rofi -show drun"
+           "format" : "󰀻  Apps",
+           "on-click" : "rofi -show drun",
+    },
+    "custom/lock": {
+	    "format": "   Lock",
+	    "on-click": "hyprlock"
     },
     "custom/power": {
-        "format": "   Logout   ",
-	"on-click" : "wlogout &"
-		}
+	    "format": "   Power",
+	    "on-click": "wlogout &"
     }
+  }
 }

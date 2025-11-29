@@ -1,3 +1,4 @@
+# --- 🚀 https://github.com/sparshabhusal ✨ --- # 
 #!/bin/bash
 
 SCRIPT_DIR="$HOME/.config/hypr/scripts"
@@ -9,7 +10,12 @@ LIST=""
 
 for file in "$SCRIPT_DIR"/*.sh; do
     [ -e "$file" ] || continue
-    [ "$(basename "$file")" = "startup.sh" ] && continue
+    
+    # Skip unwanted scripts
+    basefile=$(basename "$file")
+    if [[ "$basefile" == "startup.sh" || "$basefile" == "logout.sh" || "$basefile" == "wlogout-script.sh" ]]; then
+        continue
+    fi
 
     displayname=$(basename "$file" .sh)
     displayname="${displayname//_/ }"
