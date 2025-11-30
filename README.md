@@ -8,7 +8,7 @@
 <div align="center">
 <br>
   <a href="#-installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
-<!--  <a href="https://youtube.com/@official_sparsha/"><kbd> <br> Showcase <br> </kbd></a>&ensp;&ensp; -->
+  <a href="https://github.com/sparshabhusal/dotfiles-bank"><kbd> <br> Hyprland Dots <br> </kbd></a>&ensp;&ensp; 
   <a href="https://github.com/sparshabhusal/Dotfiles/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
 </div><br>
 
