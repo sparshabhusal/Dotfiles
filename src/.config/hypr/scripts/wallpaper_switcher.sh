@@ -70,7 +70,7 @@ if [ -n "$selected" ]; then
     pgrep -f swww >/dev/null || nohup swww daemon >/dev/null 2>&1 &
     sleep 0.5
 
-    swww img "$file" --transition-fps 60 --transition-step 10
+    swww img "$file" --transition-fps 60
     wal -i "$file" &
 
     sleep 0.2

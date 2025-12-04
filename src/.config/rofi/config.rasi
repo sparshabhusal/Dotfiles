@@ -5,13 +5,13 @@
 configuration {
     modi: "drun";
     show-icons: true;
-    display-drun: " ";
+    display-drun: "";
     drun-display-format: "{name}";
 }
 
 * {
-    font: "Inter Medium 12";
-    background-color:   transparent;
+    background-color: #000000ab;
+    font: "Adwaita Sans 12";
     text-color:         @fg0;
     margin:     0px;
     padding:    0px;
@@ -22,11 +22,9 @@ window {
     location:       north;
     y-offset:       calc(50% - 176px);
     width:          480;
-    border: 1;
+    border: 1px;
     border-color: #ffffff;
     border-radius:  24px;
-    background-opactiy: 0.15;
-    background-color:   argb:CC000000;
 }
 
 mainbox {
@@ -34,71 +32,75 @@ mainbox {
 }
 
 inputbar {
-    background-color:   inherit;
-
+    background-color:   transparent;
     border:         1px;
-    border-color: #ffffff;
+    border-color: #ffffff; 
     border-radius:  16px;
-
     padding:    8px 16px;
     spacing:    8px;
     children:   [ prompt, entry ];
 }
 
 prompt {
-    text-color: @fg2;
+    background-color: transparent;
 }
 
 entry {
-    placeholder:        "Search";
-    placeholder-color:  @fg3;
+    background-color: transparent;
+    font: "JetBrainsMono Nerd Font 13";
 }
 
 message {
+    background-color: transparent;
     margin:             12px 0 0;
     border-radius:      16px;
     border-color:       @bg2;
-    background-color:   @bg2;
 }
 
 textbox {
+    background-color: transparent;
     padding:    8px 24px;
 }
 
 listview {
     background-color:   transparent;
-
     margin:     12px 0 0;
     lines:      8;
     columns:    1;
-
     fixed-height: false;
 }
 
 element {
+    background-color: transparent;
     padding:        8px 16px;
     spacing:        8px;
     border-radius:  16px;
 }
 
 element normal active {
+    background-color: transparent;
     text-color: @bg3;
 }
 
 element alternate active {
+    background-color: transparent;
     text-color: @bg3;
 }
 
 element selected normal, element selected active {
+    background-color: transparent;
     border:         1px;
     border-color: #ffffff;
+    border-radius: 16px;
 }
 
 element-icon {
+    background-color: transparent;
     size:           25px;
     vertical-align: 0.5;
 }
 
 element-text {
+    background-color: transparent;
     text-color: inherit;
 }

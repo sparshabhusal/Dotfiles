@@ -29,7 +29,7 @@ window#waybar {
 /* Workspaces Module */
 #workspaces button.active {
     border-radius: 50px;
-    min-width: 50px;	
+    min-width: 30px;	
     background: @color15;
     color: #121212;
     margin-top : 0.5px;

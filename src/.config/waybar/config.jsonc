@@ -3,7 +3,7 @@
 {
     "layer": "top", 
     "position": "top",
-    "margin-top": 6,
+    "margin-top": 8,
     "spacing": 16,
     "modules-left": [
 	"custom/launcher",    

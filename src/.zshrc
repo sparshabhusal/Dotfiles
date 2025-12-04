@@ -32,7 +32,11 @@ alias reload-waybar="~/.config/hypr/scripts/restart_waybar.sh"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Plugins
-plugins=(git)
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
