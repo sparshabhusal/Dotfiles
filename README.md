@@ -8,7 +8,8 @@
 <div align="center">
 <br>
   <a href="#-installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/sparshabhusal/dotfiles-bank"><kbd> <br> Hyprland Dots <br> </kbd></a>&ensp;&ensp; 
+  <a href="#-updating-dotfiles"><kbd> <br> Updating <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/sparshabhusal/Dotfiles/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp; 
   <a href="https://github.com/sparshabhusal/Dotfiles/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
 </div><br>
 
@@ -16,12 +17,8 @@
 <br>
 
 <h2 align="center">✨ Preview ✨</h2>
-<img width="1921" height="1081" alt="preview" src="https://github.com/user-attachments/assets/0cd5bc7e-6ed5-4b69-937a-f8dd2ded61b3" />
+<img width="1920" height="1080" alt="2025-12-04-160405_hyprshot" src="https://github.com/user-attachments/assets/b1914c24-1bff-43cb-9ddd-cd2658ab7d72" />
 
-## 📢 Latest updates :
-
-- **New wallpaper switcher script**
-- **New script launcher script**
 
 # 📖 Information
 
@@ -51,16 +48,13 @@
 
 <br>
 
-## ❗Note
-
-- **When you use the wallpaper switcher to switch the wallpaper, the rofi color will not change because rofi is not using pywal colors yet ! Rofi is in being developed to use pywal colors.**
 
 # 📦 Installation
 
 > [!IMPORTANT]
 > Make a backup of your current system with ```timeshift``` or other restore tools !               
 
-The script will ask some questions and after that, it will install everything.                              
+The ```install.sh``` script will ask some questions and after that, it will install everything.                              
 To install the hyprland dotfiles, enter the following commands :
 ```
 git clone https://github.com/spasrhabhusal/Dotfiles.git
@@ -68,10 +62,6 @@ cd Dotfiles
 ./install.sh
 ```
 
-Or, you can also chain everything like this :
-```
-git clone https://github.com/spasrhabhusal/Dotfiles.git && cd Dotfiles && ./install.sh
-```
 
 # 🔗 Updating Dotfiles
 
