@@ -12,6 +12,7 @@
   <a href="https://github.com/sparshabhusal/Dotfiles/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
 </div><br>
 
+
 <br>
 
 <h2 align="center">✨ Preview ✨</h2>
