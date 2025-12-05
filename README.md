@@ -16,8 +16,15 @@
 
 <br>
 
-<h2 align="center">✨ Preview ✨</h2>
-<img width="1920" height="1080" alt="2025-12-04-160405_hyprshot" src="https://github.com/user-attachments/assets/b1914c24-1bff-43cb-9ddd-cd2658ab7d72" />
+<h2 align="center">✨ Showcase ✨</h2>
+<div align="center">
+
+
+https://github.com/user-attachments/assets/8786ce98-a5c6-4c1e-af95-a09cfb044216
+
+
+</div>
+
 
 
 # 📖 Information
@@ -73,3 +80,4 @@ cd Dotfiles
 ./install.sh
 ```
 
+#
