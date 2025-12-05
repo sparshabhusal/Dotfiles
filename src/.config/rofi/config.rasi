@@ -10,7 +10,7 @@ configuration {
 }
 
 * {
-    background-color: #000000ab;
+    background-color: #00000085;
     font: "Adwaita Sans 12";
     text-color:         @fg0;
     margin:     0px;

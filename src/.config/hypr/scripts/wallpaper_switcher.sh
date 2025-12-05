@@ -70,8 +70,9 @@ if [ -n "$selected" ]; then
     pgrep -f swww >/dev/null || nohup swww daemon >/dev/null 2>&1 &
     sleep 0.5
 
-    swww img "$file" --transition-fps 60
-    wal -i "$file" &
+    swww img "$file" --transition-type center --transition-duration 1 --transition-fps 60 --transition-bezier .5,1.3,.8,1
+    wal -i "$file" --no-set &
+
 
     sleep 0.2
     if [ -x "$HOME/.config/hypr/scripts/restart_waybar.sh" ]; then

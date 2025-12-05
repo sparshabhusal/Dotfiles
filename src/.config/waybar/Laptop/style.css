@@ -14,7 +14,7 @@
 window#waybar {
     background-color: transparent;
     color: @background;
-    transition: all 1050ms ease-in-out;
+    transition: all 100ms ease;
 }
 
 /* Space-Edges */
@@ -34,6 +34,7 @@ window#waybar {
     color: #121212;
     margin-top : 0.5px;
     margin-bottom: 0.5px;
+    transition: all 100ms ease;
 }
 
 #workspaces {
