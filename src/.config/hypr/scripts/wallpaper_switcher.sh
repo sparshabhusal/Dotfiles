@@ -35,12 +35,13 @@ for ext in jpg jpeg png; do
     done
 done
 
+# If no wallpapers exist
 [ ${#menu_lines[@]} -eq 0 ] && {
     echo "No wallpapers found in $WALLPAPER_DIR"
     exit 1
 }
 
-# --- SHOW ROFI MENU (FORCE EXACTLY 5 LINES) ---
+# --- ROFI MENU ---
 selected=$(printf '%b\n' "${menu_lines[@]}" | rofi \
     -dmenu \
     -show-icons \
@@ -49,33 +50,35 @@ selected=$(printf '%b\n' "${menu_lines[@]}" | rofi \
     -theme-str 'listview { lines: 5; }' \
     -p "Wallpapers")
 
+# --- USER SELECTED SOMETHING ---
 if [ -n "$selected" ]; then
     filename=$(echo -n "$selected" | tr -d '\0\x1f')
     file="${file_map[$filename]}"
 
-    echo "Selected: $selected"
-    echo "Filename key: $filename"
-    echo "File path: $file"
-
-    if [ -z "$file" ] || [ ! -f "$file" ]; then
-        echo "Error: File not found for selection: $filename"
-        exit 1
-    fi
-
-    export PATH="/usr/bin:/bin:/usr/local/bin"
-    export HOME="$HOME"
-    export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
-    export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-0}"
-
+    # Ensure swww daemon is running
     pgrep -f swww >/dev/null || nohup swww daemon >/dev/null 2>&1 &
     sleep 0.5
 
-    swww img "$file" --transition-type center --transition-duration 1 --transition-fps 60 --transition-bezier .5,1.3,.8,1
-    wal -i "$file" --no-set &
+    # --- 1. Apply wallpaper ---
+    swww img "$file" \
+        --transition-type center \
+        --transition-duration 0.7 \
+        --transition-bezier .5,1.3,.8,1 \
+        --transition-fps 60
 
+    sleep 0.3  # ensures swww transition finishes
 
-    sleep 0.2
-    if [ -x "$HOME/.config/hypr/scripts/restart_waybar.sh" ]; then
-        "$HOME/.config/hypr/scripts/restart_waybar.sh"
+    # --- 2. Run pywal (sync, NOT background) ---
+    wal -i "$file" -n
+
+    # --- 3. Export pywal colors so Waybar reads them ---
+    if [ -f "$HOME/.cache/wal/colors.sh" ]; then
+        source "$HOME/.cache/wal/colors.sh"
     fi
+
+    # --- 4. Restart Waybar properly ---
+    pkill waybar
+    sleep 0.3
+    waybar >/dev/null 2>&1 &
 fi
+

@@ -1,11 +1,20 @@
-# --- 🚀 https://github.com/sparshabhusal ✨ --- # 
-#!/bin/zsh
+# --- 🚀 https://github.com/sparshabhusal ✨ --- #
+#!/bin/bash
 
-echo "
-restarting waybar...
-"
+# Reload Hyprland config
+hyprctl reload
 
-pkill -x waybar >/dev/null 2>&1
+# Kill all existing Waybar instances
+pkill -9 waybar
+
+# Wait a bit for Waybar to fully stop
 sleep 0.3
-waybar & disown
+
+# Start Waybar ONLY if it's not running
+if ! pgrep -x "waybar" > /dev/null; then
+    waybar &
+fi
+
+# Reload Hyprland again (optional)
+hyprctl reload
 
