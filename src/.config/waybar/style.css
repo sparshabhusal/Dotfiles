@@ -34,7 +34,11 @@ window#waybar {
     color: #121212;
     margin-top : 0.5px;
     margin-bottom: 0.5px;
-    transition: all 100ms ease;
+}
+
+#workspaces button {
+    animation: gradient_f 3s ease-in infinite;
+    transition: all 0.25s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces {
